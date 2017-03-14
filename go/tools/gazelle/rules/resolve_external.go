@@ -22,6 +22,11 @@ import (
 )
 
 var (
+	// KnownImports are paths which are not static in the vcs package,
+	// to allow load balancing between actual repos,
+	// but for our case we only need to break the importpath in a known fashion.
+	KnownImports = []string{"golang.org/x/", "google.golang.org/", "cloud.google.com/", "gopkg.in/"}
+
 	// repoRootForImportPath is overwritten only in unit test to avoid depending on
 	// network communication.
 	repoRootForImportPath = vcs.RepoRootForImportPath
@@ -69,14 +74,9 @@ func (e externalResolver) resolve(importpath, dir string) (label, error) {
 	}, nil
 }
 
-// knownImports are paths which are not static in the vcs package,
-// to allow load balancing between actual repos,
-// but for our case we only need to break the importpath in a known fashion.
-var knownImports = []string{"golang.org/x/", "google.golang.org/", "cloud.google.com/", "gopkg.in/"}
-
 // specialCases looks for matches in knownImports to avoid making a network call.
 func specialCases(importpath string) string {
-	for _, known := range knownImports {
+	for _, known := range KnownImports {
 		if !strings.HasPrefix(importpath, known) {
 			continue
 		}

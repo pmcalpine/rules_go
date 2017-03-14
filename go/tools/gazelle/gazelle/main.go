@@ -31,8 +31,15 @@ import (
 	bzl "github.com/bazelbuild/buildifier/build"
 	"github.com/bazelbuild/rules_go/go/tools/gazelle/generator"
 	"github.com/bazelbuild/rules_go/go/tools/gazelle/merger"
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/rules"
 	"github.com/bazelbuild/rules_go/go/tools/gazelle/wspace"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/rules"
+)
+
+const (
+	// gazelleKnown is a marker to place at the top of WORKSPACE files in order to
+	// specify repository paths that to add to the list of "known" imports. Gazelle
+	// will not attempt to use the network to resolve these imports.
+	gazelleKnown = "# gazelle:known=" // marker in a WORKSPACE file to append to known imports.
 )
 
 var (
@@ -154,6 +161,9 @@ func main() {
 			log.Fatal(err)
 		}
 	}
+	if err := loadKnownImports(*repoRoot); err != nil {
+		log.Fatal(err)
+	}
 	if *goPrefix == "" {
 		var err error
 		if *goPrefix, err = loadGoPrefix(*repoRoot); err != nil {
@@ -255,4 +265,26 @@ func repo(args []string) (string, error) {
 		return "", fmt.Errorf("-repo_root not specified, and WORKSPACE cannot be found: %v", err)
 	}
 	return r, nil
+}
+
+func loadKnownImports(repo string) error {
+	p := filepath.Join(repo, "WORKSPACE")
+	b, err := ioutil.ReadFile(p)
+	if err != nil {
+		return err
+	}
+	f, err := bzl.Parse(p, b)
+	if err != nil {
+		return err
+	}
+	for _, s := range f.Stmt {
+		for _, c := range s.Comment().After {
+			if strings.HasPrefix(c.Token, gazelleKnown) {
+				i := strings.TrimPrefix(c.Token, gazelleKnown)
+				rules.KnownImports = append(rules.KnownImports, i)
+				fmt.Printf("Loaded known import: %s\n", i)
+			}
+		}
+	}
+	return nil
 }
