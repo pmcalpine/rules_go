@@ -4,7 +4,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-   http://www.apache.org/licenses/LICENSE-2.0
+http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -28,19 +28,18 @@ var (
 )
 
 // ImportPathToBazelRepoName converts a Go import path into a bazel repo name
- // following the guidelines in http://bazel.io/docs/be/functions.html#workspace
- func ImportPathToBazelRepoName(importpath string) string {
-      components := strings.Split(importpath, "/")
-      labels := strings.Split(components[0], ".")
-      var reversed []string
-      for i := range labels {
-      	   l := labels[len(labels)-i-1]
- 	     reversed = append(reversed, l)
- 	     }
- 	     repo := strings.Join(append(reversed, components[1:]...), "_")
- 	     return strings.NewReplacer("-", "_", ".", "_").Replace(repo)
- }
- 
+// following the guidelines in http://bazel.io/docs/be/functions.html#workspace
+func ImportPathToBazelRepoName(importpath string) string {
+	components := strings.Split(importpath, "/")
+	labels := strings.Split(components[0], ".")
+	var reversed []string
+	for i := range labels {
+		l := labels[len(labels)-i-1]
+		reversed = append(reversed, l)
+	}
+	repo := strings.Join(append(reversed, components[1:]...), "_")
+	return strings.NewReplacer("-", "_", ".", "_").Replace(repo)
+}
 
 type externalResolver struct{}
 
