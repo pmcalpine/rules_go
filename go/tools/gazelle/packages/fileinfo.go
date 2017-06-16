@@ -144,7 +144,7 @@ func fileNameInfo(dir, name string) fileInfo {
 	var goos, goarch string
 	l := strings.Split(name[:len(name)-len(ext)], "_")
 	if len(l) >= 2 && l[len(l)-1] == "test" {
-		isTest = true && category != unsupportedExt && category != ignoredExt
+		isTest = category == goExt
 		l = l[:len(l)-1]
 	}
 	switch {
