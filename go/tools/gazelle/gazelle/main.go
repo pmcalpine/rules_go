@@ -28,12 +28,12 @@ import (
 	"strings"
 
 	bf "github.com/bazelbuild/buildtools/build"
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/config"
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/merger"
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/packages"
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/resolve"
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/rules"
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/wspace"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/config"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/merger"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/packages"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/resolve"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/rules"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/wspace"
 )
 
 type emitFunc func(*config.Config, *bf.File) error

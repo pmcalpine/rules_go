@@ -21,7 +21,7 @@ import (
 	"os/exec"
 
 	bf "github.com/bazelbuild/buildtools/build"
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/config"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/config"
 )
 
 func diffFile(c *config.Config, file *bf.File) error {

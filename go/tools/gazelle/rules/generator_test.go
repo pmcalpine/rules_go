@@ -22,11 +22,11 @@ import (
 	"testing"
 
 	bf "github.com/bazelbuild/buildtools/build"
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/config"
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/packages"
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/rules"
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/resolve"
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/testdata"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/config"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/packages"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/resolve"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/rules"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/testdata"
 )
 
 func testConfig(repoRoot, goPrefix string) *config.Config {

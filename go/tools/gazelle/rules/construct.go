@@ -22,7 +22,7 @@ import (
 	"sort"
 
 	bf "github.com/bazelbuild/buildtools/build"
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/packages"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/packages"
 )
 
 type keyvalue struct {

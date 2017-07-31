@@ -24,8 +24,8 @@ import (
 	"testing"
 
 	bf "github.com/bazelbuild/buildtools/build"
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/config"
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/packages"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/config"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/packages"
 )
 
 func tempDir() (string, error) {

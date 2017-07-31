@@ -31,7 +31,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/config"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/config"
 )
 
 // fileInfo holds information used to decide how to build a file. This

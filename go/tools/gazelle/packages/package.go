@@ -20,7 +20,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/config"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/config"
 )
 
 // Package contains metadata about a Go package extracted from a directory.

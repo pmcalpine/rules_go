@@ -23,7 +23,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/bazelbuild/rules_go/go/tools/gazelle/config"
+	"github.com/pmcalpine/rules_go/go/tools/gazelle/config"
 )
 
 func TestGoFileInfo(t *testing.T) {
